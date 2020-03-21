@@ -1,14 +1,14 @@
-# Quasar App (picker-client)
+![](screenshot/cover.png)
+# 一款基于 Quasar + Graphql + hasura 实现的资源站产品
 
-A Quasar Framework app
-
-## Install the dependencies
+## 安装 Install the dependencies
 ```bash
 yarn
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### 开发 Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
+docker-compose up -d
 quasar dev
 ```
 
@@ -17,10 +17,14 @@ quasar dev
 yarn run lint
 ```
 
-### Build the app for production
+### 发布 Build the app for production
 ```bash
+docker-compose up -d
 quasar build
 ```
 
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+## 相关资源
+
+- [https://hasura.io/](https://hasura.io/)
+- [https://quasar.dev/](https://quasar.dev/)
+- [https://graphql.org/](https://graphql.org/)
