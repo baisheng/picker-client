@@ -1,0 +1,4551 @@
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+"""
+columns and relationships of "assets"
+"""
+type assets {
+  created_at: timestamptz!
+  file_size: Int!
+  focal_point(
+    """
+    JSON select path
+    """
+    path: String
+  ): json!
+  height: Int!
+  id: Int!
+  mime_type: String!
+  name: String!
+  preview: String!
+  source: String!
+  type: String!
+  updated_at: timestamptz!
+  width: Int!
+}
+
+"""
+aggregated selection of "assets"
+"""
+type assets_aggregate {
+  aggregate: assets_aggregate_fields
+  nodes: [assets!]!
+}
+
+"""
+aggregate fields of "assets"
+"""
+type assets_aggregate_fields {
+  avg: assets_avg_fields
+  count(columns: [assets_select_column!], distinct: Boolean): Int
+  max: assets_max_fields
+  min: assets_min_fields
+  stddev: assets_stddev_fields
+  stddev_pop: assets_stddev_pop_fields
+  stddev_samp: assets_stddev_samp_fields
+  sum: assets_sum_fields
+  var_pop: assets_var_pop_fields
+  var_samp: assets_var_samp_fields
+  variance: assets_variance_fields
+}
+
+"""
+order by aggregate values of table "assets"
+"""
+input assets_aggregate_order_by {
+  avg: assets_avg_order_by
+  count: order_by
+  max: assets_max_order_by
+  min: assets_min_order_by
+  stddev: assets_stddev_order_by
+  stddev_pop: assets_stddev_pop_order_by
+  stddev_samp: assets_stddev_samp_order_by
+  sum: assets_sum_order_by
+  var_pop: assets_var_pop_order_by
+  var_samp: assets_var_samp_order_by
+  variance: assets_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "assets"
+"""
+input assets_arr_rel_insert_input {
+  data: [assets_insert_input!]!
+  on_conflict: assets_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type assets_avg_fields {
+  file_size: Float
+  height: Float
+  id: Float
+  width: Float
+}
+
+"""
+order by avg() on columns of table "assets"
+"""
+input assets_avg_order_by {
+  file_size: order_by
+  height: order_by
+  id: order_by
+  width: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "assets". All fields are combined with a logical 'AND'.
+"""
+input assets_bool_exp {
+  _and: [assets_bool_exp]
+  _not: assets_bool_exp
+  _or: [assets_bool_exp]
+  created_at: timestamptz_comparison_exp
+  file_size: Int_comparison_exp
+  focal_point: json_comparison_exp
+  height: Int_comparison_exp
+  id: Int_comparison_exp
+  mime_type: String_comparison_exp
+  name: String_comparison_exp
+  preview: String_comparison_exp
+  source: String_comparison_exp
+  type: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  width: Int_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "assets"
+"""
+enum assets_constraint {
+  """
+  unique or primary key constraint
+  """
+  assets_pkey
+}
+
+"""
+input type for incrementing integer columne in table "assets"
+"""
+input assets_inc_input {
+  file_size: Int
+  height: Int
+  id: Int
+  width: Int
+}
+
+"""
+input type for inserting data into table "assets"
+"""
+input assets_insert_input {
+  created_at: timestamptz
+  file_size: Int
+  focal_point: json
+  height: Int
+  id: Int
+  mime_type: String
+  name: String
+  preview: String
+  source: String
+  type: String
+  updated_at: timestamptz
+  width: Int
+}
+
+"""
+aggregate max on columns
+"""
+type assets_max_fields {
+  created_at: timestamptz
+  file_size: Int
+  height: Int
+  id: Int
+  mime_type: String
+  name: String
+  preview: String
+  source: String
+  type: String
+  updated_at: timestamptz
+  width: Int
+}
+
+"""
+order by max() on columns of table "assets"
+"""
+input assets_max_order_by {
+  created_at: order_by
+  file_size: order_by
+  height: order_by
+  id: order_by
+  mime_type: order_by
+  name: order_by
+  preview: order_by
+  source: order_by
+  type: order_by
+  updated_at: order_by
+  width: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type assets_min_fields {
+  created_at: timestamptz
+  file_size: Int
+  height: Int
+  id: Int
+  mime_type: String
+  name: String
+  preview: String
+  source: String
+  type: String
+  updated_at: timestamptz
+  width: Int
+}
+
+"""
+order by min() on columns of table "assets"
+"""
+input assets_min_order_by {
+  created_at: order_by
+  file_size: order_by
+  height: order_by
+  id: order_by
+  mime_type: order_by
+  name: order_by
+  preview: order_by
+  source: order_by
+  type: order_by
+  updated_at: order_by
+  width: order_by
+}
+
+"""
+response of any mutation on the table "assets"
+"""
+type assets_mutation_response {
+  """
+  number of affected rows by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data of the affected rows by the mutation
+  """
+  returning: [assets!]!
+}
+
+"""
+input type for inserting object relation for remote table "assets"
+"""
+input assets_obj_rel_insert_input {
+  data: assets_insert_input!
+  on_conflict: assets_on_conflict
+}
+
+"""
+on conflict condition type for table "assets"
+"""
+input assets_on_conflict {
+  constraint: assets_constraint!
+  update_columns: [assets_update_column!]!
+  where: assets_bool_exp
+}
+
+"""
+ordering options when selecting data from "assets"
+"""
+input assets_order_by {
+  created_at: order_by
+  file_size: order_by
+  focal_point: order_by
+  height: order_by
+  id: order_by
+  mime_type: order_by
+  name: order_by
+  preview: order_by
+  source: order_by
+  type: order_by
+  updated_at: order_by
+  width: order_by
+}
+
+"""
+primary key columns input for table: "assets"
+"""
+input assets_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "assets"
+"""
+enum assets_select_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  file_size
+
+  """
+  column name
+  """
+  focal_point
+
+  """
+  column name
+  """
+  height
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  mime_type
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  preview
+
+  """
+  column name
+  """
+  source
+
+  """
+  column name
+  """
+  type
+
+  """
+  column name
+  """
+  updated_at
+
+  """
+  column name
+  """
+  width
+}
+
+"""
+input type for updating data in table "assets"
+"""
+input assets_set_input {
+  created_at: timestamptz
+  file_size: Int
+  focal_point: json
+  height: Int
+  id: Int
+  mime_type: String
+  name: String
+  preview: String
+  source: String
+  type: String
+  updated_at: timestamptz
+  width: Int
+}
+
+"""
+aggregate stddev on columns
+"""
+type assets_stddev_fields {
+  file_size: Float
+  height: Float
+  id: Float
+  width: Float
+}
+
+"""
+order by stddev() on columns of table "assets"
+"""
+input assets_stddev_order_by {
+  file_size: order_by
+  height: order_by
+  id: order_by
+  width: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type assets_stddev_pop_fields {
+  file_size: Float
+  height: Float
+  id: Float
+  width: Float
+}
+
+"""
+order by stddev_pop() on columns of table "assets"
+"""
+input assets_stddev_pop_order_by {
+  file_size: order_by
+  height: order_by
+  id: order_by
+  width: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type assets_stddev_samp_fields {
+  file_size: Float
+  height: Float
+  id: Float
+  width: Float
+}
+
+"""
+order by stddev_samp() on columns of table "assets"
+"""
+input assets_stddev_samp_order_by {
+  file_size: order_by
+  height: order_by
+  id: order_by
+  width: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type assets_sum_fields {
+  file_size: Int
+  height: Int
+  id: Int
+  width: Int
+}
+
+"""
+order by sum() on columns of table "assets"
+"""
+input assets_sum_order_by {
+  file_size: order_by
+  height: order_by
+  id: order_by
+  width: order_by
+}
+
+"""
+update columns of table "assets"
+"""
+enum assets_update_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  file_size
+
+  """
+  column name
+  """
+  focal_point
+
+  """
+  column name
+  """
+  height
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  mime_type
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  preview
+
+  """
+  column name
+  """
+  source
+
+  """
+  column name
+  """
+  type
+
+  """
+  column name
+  """
+  updated_at
+
+  """
+  column name
+  """
+  width
+}
+
+"""
+aggregate var_pop on columns
+"""
+type assets_var_pop_fields {
+  file_size: Float
+  height: Float
+  id: Float
+  width: Float
+}
+
+"""
+order by var_pop() on columns of table "assets"
+"""
+input assets_var_pop_order_by {
+  file_size: order_by
+  height: order_by
+  id: order_by
+  width: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type assets_var_samp_fields {
+  file_size: Float
+  height: Float
+  id: Float
+  width: Float
+}
+
+"""
+order by var_samp() on columns of table "assets"
+"""
+input assets_var_samp_order_by {
+  file_size: order_by
+  height: order_by
+  id: order_by
+  width: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type assets_variance_fields {
+  file_size: Float
+  height: Float
+  id: Float
+  width: Float
+}
+
+"""
+order by variance() on columns of table "assets"
+"""
+input assets_variance_order_by {
+  file_size: order_by
+  height: order_by
+  id: order_by
+  width: order_by
+}
+
+"""
+expression to compare columns of type Boolean. All fields are combined with logical 'AND'.
+"""
+input Boolean_comparison_exp {
+  _eq: Boolean
+  _gt: Boolean
+  _gte: Boolean
+  _in: [Boolean!]
+  _is_null: Boolean
+  _lt: Boolean
+  _lte: Boolean
+  _neq: Boolean
+  _nin: [Boolean!]
+}
+
+"""
+columns and relationships of "categories"
+"""
+type categories {
+  created_at: timestamptz!
+  description: String!
+  id: Int!
+  name: String!
+
+  """
+  An array relationship
+  """
+  posts(
+    """
+    distinct select on columns
+    """
+    distinct_on: [posts_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [posts_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: posts_bool_exp
+  ): [posts!]!
+
+  """
+  An aggregated array relationship
+  """
+  posts_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [posts_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [posts_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: posts_bool_exp
+  ): posts_aggregate!
+  title: String!
+  updated_at: timestamptz!
+}
+
+"""
+aggregated selection of "categories"
+"""
+type categories_aggregate {
+  aggregate: categories_aggregate_fields
+  nodes: [categories!]!
+}
+
+"""
+aggregate fields of "categories"
+"""
+type categories_aggregate_fields {
+  avg: categories_avg_fields
+  count(columns: [categories_select_column!], distinct: Boolean): Int
+  max: categories_max_fields
+  min: categories_min_fields
+  stddev: categories_stddev_fields
+  stddev_pop: categories_stddev_pop_fields
+  stddev_samp: categories_stddev_samp_fields
+  sum: categories_sum_fields
+  var_pop: categories_var_pop_fields
+  var_samp: categories_var_samp_fields
+  variance: categories_variance_fields
+}
+
+"""
+order by aggregate values of table "categories"
+"""
+input categories_aggregate_order_by {
+  avg: categories_avg_order_by
+  count: order_by
+  max: categories_max_order_by
+  min: categories_min_order_by
+  stddev: categories_stddev_order_by
+  stddev_pop: categories_stddev_pop_order_by
+  stddev_samp: categories_stddev_samp_order_by
+  sum: categories_sum_order_by
+  var_pop: categories_var_pop_order_by
+  var_samp: categories_var_samp_order_by
+  variance: categories_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "categories"
+"""
+input categories_arr_rel_insert_input {
+  data: [categories_insert_input!]!
+  on_conflict: categories_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type categories_avg_fields {
+  id: Float
+}
+
+"""
+order by avg() on columns of table "categories"
+"""
+input categories_avg_order_by {
+  id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "categories". All fields are combined with a logical 'AND'.
+"""
+input categories_bool_exp {
+  _and: [categories_bool_exp]
+  _not: categories_bool_exp
+  _or: [categories_bool_exp]
+  created_at: timestamptz_comparison_exp
+  description: String_comparison_exp
+  id: Int_comparison_exp
+  name: String_comparison_exp
+  posts: posts_bool_exp
+  title: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "categories"
+"""
+enum categories_constraint {
+  """
+  unique or primary key constraint
+  """
+  categories_pkey
+}
+
+"""
+input type for incrementing integer columne in table "categories"
+"""
+input categories_inc_input {
+  id: Int
+}
+
+"""
+input type for inserting data into table "categories"
+"""
+input categories_insert_input {
+  created_at: timestamptz
+  description: String
+  id: Int
+  name: String
+  posts: posts_arr_rel_insert_input
+  title: String
+  updated_at: timestamptz
+}
+
+"""
+aggregate max on columns
+"""
+type categories_max_fields {
+  created_at: timestamptz
+  description: String
+  id: Int
+  name: String
+  title: String
+  updated_at: timestamptz
+}
+
+"""
+order by max() on columns of table "categories"
+"""
+input categories_max_order_by {
+  created_at: order_by
+  description: order_by
+  id: order_by
+  name: order_by
+  title: order_by
+  updated_at: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type categories_min_fields {
+  created_at: timestamptz
+  description: String
+  id: Int
+  name: String
+  title: String
+  updated_at: timestamptz
+}
+
+"""
+order by min() on columns of table "categories"
+"""
+input categories_min_order_by {
+  created_at: order_by
+  description: order_by
+  id: order_by
+  name: order_by
+  title: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "categories"
+"""
+type categories_mutation_response {
+  """
+  number of affected rows by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data of the affected rows by the mutation
+  """
+  returning: [categories!]!
+}
+
+"""
+input type for inserting object relation for remote table "categories"
+"""
+input categories_obj_rel_insert_input {
+  data: categories_insert_input!
+  on_conflict: categories_on_conflict
+}
+
+"""
+on conflict condition type for table "categories"
+"""
+input categories_on_conflict {
+  constraint: categories_constraint!
+  update_columns: [categories_update_column!]!
+  where: categories_bool_exp
+}
+
+"""
+ordering options when selecting data from "categories"
+"""
+input categories_order_by {
+  created_at: order_by
+  description: order_by
+  id: order_by
+  name: order_by
+  posts_aggregate: posts_aggregate_order_by
+  title: order_by
+  updated_at: order_by
+}
+
+"""
+primary key columns input for table: "categories"
+"""
+input categories_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "categories"
+"""
+enum categories_select_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  description
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  title
+
+  """
+  column name
+  """
+  updated_at
+}
+
+"""
+input type for updating data in table "categories"
+"""
+input categories_set_input {
+  created_at: timestamptz
+  description: String
+  id: Int
+  name: String
+  title: String
+  updated_at: timestamptz
+}
+
+"""
+aggregate stddev on columns
+"""
+type categories_stddev_fields {
+  id: Float
+}
+
+"""
+order by stddev() on columns of table "categories"
+"""
+input categories_stddev_order_by {
+  id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type categories_stddev_pop_fields {
+  id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "categories"
+"""
+input categories_stddev_pop_order_by {
+  id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type categories_stddev_samp_fields {
+  id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "categories"
+"""
+input categories_stddev_samp_order_by {
+  id: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type categories_sum_fields {
+  id: Int
+}
+
+"""
+order by sum() on columns of table "categories"
+"""
+input categories_sum_order_by {
+  id: order_by
+}
+
+"""
+update columns of table "categories"
+"""
+enum categories_update_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  description
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  title
+
+  """
+  column name
+  """
+  updated_at
+}
+
+"""
+aggregate var_pop on columns
+"""
+type categories_var_pop_fields {
+  id: Float
+}
+
+"""
+order by var_pop() on columns of table "categories"
+"""
+input categories_var_pop_order_by {
+  id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type categories_var_samp_fields {
+  id: Float
+}
+
+"""
+order by var_samp() on columns of table "categories"
+"""
+input categories_var_samp_order_by {
+  id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type categories_variance_fields {
+  id: Float
+}
+
+"""
+order by variance() on columns of table "categories"
+"""
+input categories_variance_order_by {
+  id: order_by
+}
+
+"""
+expression to compare columns of type Int. All fields are combined with logical 'AND'.
+"""
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+scalar json
+
+"""
+expression to compare columns of type json. All fields are combined with logical 'AND'.
+"""
+input json_comparison_exp {
+  _eq: json
+  _gt: json
+  _gte: json
+  _in: [json!]
+  _is_null: Boolean
+  _lt: json
+  _lte: json
+  _neq: json
+  _nin: [json!]
+}
+
+"""
+mutation root
+"""
+type mutation_root {
+  """
+  delete data from the table: "assets"
+  """
+  delete_assets(
+    """
+    filter the rows which have to be deleted
+    """
+    where: assets_bool_exp!
+  ): assets_mutation_response
+
+  """
+  delete single row from the table: "assets"
+  """
+  delete_assets_by_pk(id: Int!): assets
+
+  """
+  delete data from the table: "categories"
+  """
+  delete_categories(
+    """
+    filter the rows which have to be deleted
+    """
+    where: categories_bool_exp!
+  ): categories_mutation_response
+
+  """
+  delete single row from the table: "categories"
+  """
+  delete_categories_by_pk(id: Int!): categories
+
+  """
+  delete data from the table: "postmeta"
+  """
+  delete_postmeta(
+    """
+    filter the rows which have to be deleted
+    """
+    where: postmeta_bool_exp!
+  ): postmeta_mutation_response
+
+  """
+  delete single row from the table: "postmeta"
+  """
+  delete_postmeta_by_pk(id: Int!): postmeta
+
+  """
+  delete data from the table: "posts"
+  """
+  delete_posts(
+    """
+    filter the rows which have to be deleted
+    """
+    where: posts_bool_exp!
+  ): posts_mutation_response
+
+  """
+  delete single row from the table: "posts"
+  """
+  delete_posts_by_pk(id: Int!): posts
+
+  """
+  delete data from the table: "session"
+  """
+  delete_session(
+    """
+    filter the rows which have to be deleted
+    """
+    where: session_bool_exp!
+  ): session_mutation_response
+
+  """
+  delete single row from the table: "session"
+  """
+  delete_session_by_pk(id: Int!): session
+
+  """
+  delete data from the table: "users"
+  """
+  delete_users(
+    """
+    filter the rows which have to be deleted
+    """
+    where: users_bool_exp!
+  ): users_mutation_response
+
+  """
+  delete single row from the table: "users"
+  """
+  delete_users_by_pk(id: Int!): users
+
+  """
+  insert data into the table: "assets"
+  """
+  insert_assets(
+    """
+    the rows to be inserted
+    """
+    objects: [assets_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: assets_on_conflict
+  ): assets_mutation_response
+
+  """
+  insert a single row into the table: "assets"
+  """
+  insert_assets_one(
+    """
+    the row to be inserted
+    """
+    object: assets_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: assets_on_conflict
+  ): assets
+
+  """
+  insert data into the table: "categories"
+  """
+  insert_categories(
+    """
+    the rows to be inserted
+    """
+    objects: [categories_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: categories_on_conflict
+  ): categories_mutation_response
+
+  """
+  insert a single row into the table: "categories"
+  """
+  insert_categories_one(
+    """
+    the row to be inserted
+    """
+    object: categories_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: categories_on_conflict
+  ): categories
+
+  """
+  insert data into the table: "postmeta"
+  """
+  insert_postmeta(
+    """
+    the rows to be inserted
+    """
+    objects: [postmeta_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: postmeta_on_conflict
+  ): postmeta_mutation_response
+
+  """
+  insert a single row into the table: "postmeta"
+  """
+  insert_postmeta_one(
+    """
+    the row to be inserted
+    """
+    object: postmeta_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: postmeta_on_conflict
+  ): postmeta
+
+  """
+  insert data into the table: "posts"
+  """
+  insert_posts(
+    """
+    the rows to be inserted
+    """
+    objects: [posts_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: posts_on_conflict
+  ): posts_mutation_response
+
+  """
+  insert a single row into the table: "posts"
+  """
+  insert_posts_one(
+    """
+    the row to be inserted
+    """
+    object: posts_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: posts_on_conflict
+  ): posts
+
+  """
+  insert data into the table: "session"
+  """
+  insert_session(
+    """
+    the rows to be inserted
+    """
+    objects: [session_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: session_on_conflict
+  ): session_mutation_response
+
+  """
+  insert a single row into the table: "session"
+  """
+  insert_session_one(
+    """
+    the row to be inserted
+    """
+    object: session_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: session_on_conflict
+  ): session
+
+  """
+  insert data into the table: "users"
+  """
+  insert_users(
+    """
+    the rows to be inserted
+    """
+    objects: [users_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: users_on_conflict
+  ): users_mutation_response
+
+  """
+  insert a single row into the table: "users"
+  """
+  insert_users_one(
+    """
+    the row to be inserted
+    """
+    object: users_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: users_on_conflict
+  ): users
+
+  """
+  update data of the table: "assets"
+  """
+  update_assets(
+    """
+    increments the integer columns with given value of the filtered values
+    """
+    _inc: assets_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: assets_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: assets_bool_exp!
+  ): assets_mutation_response
+
+  """
+  update single row of the table: "assets"
+  """
+  update_assets_by_pk(
+    """
+    increments the integer columns with given value of the filtered values
+    """
+    _inc: assets_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: assets_set_input
+    pk_columns: assets_pk_columns_input!
+  ): assets
+
+  """
+  update data of the table: "categories"
+  """
+  update_categories(
+    """
+    increments the integer columns with given value of the filtered values
+    """
+    _inc: categories_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: categories_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: categories_bool_exp!
+  ): categories_mutation_response
+
+  """
+  update single row of the table: "categories"
+  """
+  update_categories_by_pk(
+    """
+    increments the integer columns with given value of the filtered values
+    """
+    _inc: categories_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: categories_set_input
+    pk_columns: categories_pk_columns_input!
+  ): categories
+
+  """
+  update data of the table: "postmeta"
+  """
+  update_postmeta(
+    """
+    increments the integer columns with given value of the filtered values
+    """
+    _inc: postmeta_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: postmeta_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: postmeta_bool_exp!
+  ): postmeta_mutation_response
+
+  """
+  update single row of the table: "postmeta"
+  """
+  update_postmeta_by_pk(
+    """
+    increments the integer columns with given value of the filtered values
+    """
+    _inc: postmeta_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: postmeta_set_input
+    pk_columns: postmeta_pk_columns_input!
+  ): postmeta
+
+  """
+  update data of the table: "posts"
+  """
+  update_posts(
+    """
+    increments the integer columns with given value of the filtered values
+    """
+    _inc: posts_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: posts_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: posts_bool_exp!
+  ): posts_mutation_response
+
+  """
+  update single row of the table: "posts"
+  """
+  update_posts_by_pk(
+    """
+    increments the integer columns with given value of the filtered values
+    """
+    _inc: posts_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: posts_set_input
+    pk_columns: posts_pk_columns_input!
+  ): posts
+
+  """
+  update data of the table: "session"
+  """
+  update_session(
+    """
+    increments the integer columns with given value of the filtered values
+    """
+    _inc: session_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: session_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: session_bool_exp!
+  ): session_mutation_response
+
+  """
+  update single row of the table: "session"
+  """
+  update_session_by_pk(
+    """
+    increments the integer columns with given value of the filtered values
+    """
+    _inc: session_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: session_set_input
+    pk_columns: session_pk_columns_input!
+  ): session
+
+  """
+  update data of the table: "users"
+  """
+  update_users(
+    """
+    increments the integer columns with given value of the filtered values
+    """
+    _inc: users_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: users_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: users_bool_exp!
+  ): users_mutation_response
+
+  """
+  update single row of the table: "users"
+  """
+  update_users_by_pk(
+    """
+    increments the integer columns with given value of the filtered values
+    """
+    _inc: users_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: users_set_input
+    pk_columns: users_pk_columns_input!
+  ): users
+}
+
+"""
+column ordering options
+"""
+enum order_by {
+  """
+  in the ascending order, nulls last
+  """
+  asc
+
+  """
+  in the ascending order, nulls first
+  """
+  asc_nulls_first
+
+  """
+  in the ascending order, nulls last
+  """
+  asc_nulls_last
+
+  """
+  in the descending order, nulls first
+  """
+  desc
+
+  """
+  in the descending order, nulls first
+  """
+  desc_nulls_first
+
+  """
+  in the descending order, nulls last
+  """
+  desc_nulls_last
+}
+
+"""
+columns and relationships of "postmeta"
+"""
+type postmeta {
+  created_at: timestamptz!
+  id: Int!
+  key: String!
+
+  """
+  An object relationship
+  """
+  post: posts
+  post_id: Int
+  updated_at: timestamptz!
+  value(
+    """
+    JSON select path
+    """
+    path: String
+  ): json!
+}
+
+"""
+aggregated selection of "postmeta"
+"""
+type postmeta_aggregate {
+  aggregate: postmeta_aggregate_fields
+  nodes: [postmeta!]!
+}
+
+"""
+aggregate fields of "postmeta"
+"""
+type postmeta_aggregate_fields {
+  avg: postmeta_avg_fields
+  count(columns: [postmeta_select_column!], distinct: Boolean): Int
+  max: postmeta_max_fields
+  min: postmeta_min_fields
+  stddev: postmeta_stddev_fields
+  stddev_pop: postmeta_stddev_pop_fields
+  stddev_samp: postmeta_stddev_samp_fields
+  sum: postmeta_sum_fields
+  var_pop: postmeta_var_pop_fields
+  var_samp: postmeta_var_samp_fields
+  variance: postmeta_variance_fields
+}
+
+"""
+order by aggregate values of table "postmeta"
+"""
+input postmeta_aggregate_order_by {
+  avg: postmeta_avg_order_by
+  count: order_by
+  max: postmeta_max_order_by
+  min: postmeta_min_order_by
+  stddev: postmeta_stddev_order_by
+  stddev_pop: postmeta_stddev_pop_order_by
+  stddev_samp: postmeta_stddev_samp_order_by
+  sum: postmeta_sum_order_by
+  var_pop: postmeta_var_pop_order_by
+  var_samp: postmeta_var_samp_order_by
+  variance: postmeta_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "postmeta"
+"""
+input postmeta_arr_rel_insert_input {
+  data: [postmeta_insert_input!]!
+  on_conflict: postmeta_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type postmeta_avg_fields {
+  id: Float
+  post_id: Float
+}
+
+"""
+order by avg() on columns of table "postmeta"
+"""
+input postmeta_avg_order_by {
+  id: order_by
+  post_id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "postmeta". All fields are combined with a logical 'AND'.
+"""
+input postmeta_bool_exp {
+  _and: [postmeta_bool_exp]
+  _not: postmeta_bool_exp
+  _or: [postmeta_bool_exp]
+  created_at: timestamptz_comparison_exp
+  id: Int_comparison_exp
+  key: String_comparison_exp
+  post: posts_bool_exp
+  post_id: Int_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  value: json_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "postmeta"
+"""
+enum postmeta_constraint {
+  """
+  unique or primary key constraint
+  """
+  postmeta_pkey
+}
+
+"""
+input type for incrementing integer columne in table "postmeta"
+"""
+input postmeta_inc_input {
+  id: Int
+  post_id: Int
+}
+
+"""
+input type for inserting data into table "postmeta"
+"""
+input postmeta_insert_input {
+  created_at: timestamptz
+  id: Int
+  key: String
+  post: posts_obj_rel_insert_input
+  post_id: Int
+  updated_at: timestamptz
+  value: json
+}
+
+"""
+aggregate max on columns
+"""
+type postmeta_max_fields {
+  created_at: timestamptz
+  id: Int
+  key: String
+  post_id: Int
+  updated_at: timestamptz
+}
+
+"""
+order by max() on columns of table "postmeta"
+"""
+input postmeta_max_order_by {
+  created_at: order_by
+  id: order_by
+  key: order_by
+  post_id: order_by
+  updated_at: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type postmeta_min_fields {
+  created_at: timestamptz
+  id: Int
+  key: String
+  post_id: Int
+  updated_at: timestamptz
+}
+
+"""
+order by min() on columns of table "postmeta"
+"""
+input postmeta_min_order_by {
+  created_at: order_by
+  id: order_by
+  key: order_by
+  post_id: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "postmeta"
+"""
+type postmeta_mutation_response {
+  """
+  number of affected rows by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data of the affected rows by the mutation
+  """
+  returning: [postmeta!]!
+}
+
+"""
+input type for inserting object relation for remote table "postmeta"
+"""
+input postmeta_obj_rel_insert_input {
+  data: postmeta_insert_input!
+  on_conflict: postmeta_on_conflict
+}
+
+"""
+on conflict condition type for table "postmeta"
+"""
+input postmeta_on_conflict {
+  constraint: postmeta_constraint!
+  update_columns: [postmeta_update_column!]!
+  where: postmeta_bool_exp
+}
+
+"""
+ordering options when selecting data from "postmeta"
+"""
+input postmeta_order_by {
+  created_at: order_by
+  id: order_by
+  key: order_by
+  post: posts_order_by
+  post_id: order_by
+  updated_at: order_by
+  value: order_by
+}
+
+"""
+primary key columns input for table: "postmeta"
+"""
+input postmeta_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "postmeta"
+"""
+enum postmeta_select_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  key
+
+  """
+  column name
+  """
+  post_id
+
+  """
+  column name
+  """
+  updated_at
+
+  """
+  column name
+  """
+  value
+}
+
+"""
+input type for updating data in table "postmeta"
+"""
+input postmeta_set_input {
+  created_at: timestamptz
+  id: Int
+  key: String
+  post_id: Int
+  updated_at: timestamptz
+  value: json
+}
+
+"""
+aggregate stddev on columns
+"""
+type postmeta_stddev_fields {
+  id: Float
+  post_id: Float
+}
+
+"""
+order by stddev() on columns of table "postmeta"
+"""
+input postmeta_stddev_order_by {
+  id: order_by
+  post_id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type postmeta_stddev_pop_fields {
+  id: Float
+  post_id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "postmeta"
+"""
+input postmeta_stddev_pop_order_by {
+  id: order_by
+  post_id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type postmeta_stddev_samp_fields {
+  id: Float
+  post_id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "postmeta"
+"""
+input postmeta_stddev_samp_order_by {
+  id: order_by
+  post_id: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type postmeta_sum_fields {
+  id: Int
+  post_id: Int
+}
+
+"""
+order by sum() on columns of table "postmeta"
+"""
+input postmeta_sum_order_by {
+  id: order_by
+  post_id: order_by
+}
+
+"""
+update columns of table "postmeta"
+"""
+enum postmeta_update_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  key
+
+  """
+  column name
+  """
+  post_id
+
+  """
+  column name
+  """
+  updated_at
+
+  """
+  column name
+  """
+  value
+}
+
+"""
+aggregate var_pop on columns
+"""
+type postmeta_var_pop_fields {
+  id: Float
+  post_id: Float
+}
+
+"""
+order by var_pop() on columns of table "postmeta"
+"""
+input postmeta_var_pop_order_by {
+  id: order_by
+  post_id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type postmeta_var_samp_fields {
+  id: Float
+  post_id: Float
+}
+
+"""
+order by var_samp() on columns of table "postmeta"
+"""
+input postmeta_var_samp_order_by {
+  id: order_by
+  post_id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type postmeta_variance_fields {
+  id: Float
+  post_id: Float
+}
+
+"""
+order by variance() on columns of table "postmeta"
+"""
+input postmeta_variance_order_by {
+  id: order_by
+  post_id: order_by
+}
+
+"""
+columns and relationships of "posts"
+"""
+type posts {
+  author_id: Int
+
+  """
+  An object relationship
+  """
+  category: categories
+  category_id: Int
+  content: String
+  cover: String
+  created_at: timestamptz!
+  description: String!
+  guid: String!
+  id: Int!
+  name: String
+
+  """
+  An array relationship
+  """
+  postmeta(
+    """
+    distinct select on columns
+    """
+    distinct_on: [postmeta_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [postmeta_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: postmeta_bool_exp
+  ): [postmeta!]!
+
+  """
+  An aggregated array relationship
+  """
+  postmeta_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [postmeta_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [postmeta_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: postmeta_bool_exp
+  ): postmeta_aggregate!
+  title: String!
+  updated_at: timestamptz!
+
+  """
+  An object relationship
+  """
+  user: users
+}
+
+"""
+aggregated selection of "posts"
+"""
+type posts_aggregate {
+  aggregate: posts_aggregate_fields
+  nodes: [posts!]!
+}
+
+"""
+aggregate fields of "posts"
+"""
+type posts_aggregate_fields {
+  avg: posts_avg_fields
+  count(columns: [posts_select_column!], distinct: Boolean): Int
+  max: posts_max_fields
+  min: posts_min_fields
+  stddev: posts_stddev_fields
+  stddev_pop: posts_stddev_pop_fields
+  stddev_samp: posts_stddev_samp_fields
+  sum: posts_sum_fields
+  var_pop: posts_var_pop_fields
+  var_samp: posts_var_samp_fields
+  variance: posts_variance_fields
+}
+
+"""
+order by aggregate values of table "posts"
+"""
+input posts_aggregate_order_by {
+  avg: posts_avg_order_by
+  count: order_by
+  max: posts_max_order_by
+  min: posts_min_order_by
+  stddev: posts_stddev_order_by
+  stddev_pop: posts_stddev_pop_order_by
+  stddev_samp: posts_stddev_samp_order_by
+  sum: posts_sum_order_by
+  var_pop: posts_var_pop_order_by
+  var_samp: posts_var_samp_order_by
+  variance: posts_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "posts"
+"""
+input posts_arr_rel_insert_input {
+  data: [posts_insert_input!]!
+  on_conflict: posts_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type posts_avg_fields {
+  author_id: Float
+  category_id: Float
+  id: Float
+}
+
+"""
+order by avg() on columns of table "posts"
+"""
+input posts_avg_order_by {
+  author_id: order_by
+  category_id: order_by
+  id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "posts". All fields are combined with a logical 'AND'.
+"""
+input posts_bool_exp {
+  _and: [posts_bool_exp]
+  _not: posts_bool_exp
+  _or: [posts_bool_exp]
+  author_id: Int_comparison_exp
+  category: categories_bool_exp
+  category_id: Int_comparison_exp
+  content: String_comparison_exp
+  cover: String_comparison_exp
+  created_at: timestamptz_comparison_exp
+  description: String_comparison_exp
+  guid: String_comparison_exp
+  id: Int_comparison_exp
+  name: String_comparison_exp
+  postmeta: postmeta_bool_exp
+  title: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  user: users_bool_exp
+}
+
+"""
+unique or primary key constraints on table "posts"
+"""
+enum posts_constraint {
+  """
+  unique or primary key constraint
+  """
+  posts_name_unique
+
+  """
+  unique or primary key constraint
+  """
+  posts_pkey
+}
+
+"""
+input type for incrementing integer columne in table "posts"
+"""
+input posts_inc_input {
+  author_id: Int
+  category_id: Int
+  id: Int
+}
+
+"""
+input type for inserting data into table "posts"
+"""
+input posts_insert_input {
+  author_id: Int
+  category: categories_obj_rel_insert_input
+  category_id: Int
+  content: String
+  cover: String
+  created_at: timestamptz
+  description: String
+  guid: String
+  id: Int
+  name: String
+  postmeta: postmeta_arr_rel_insert_input
+  title: String
+  updated_at: timestamptz
+  user: users_obj_rel_insert_input
+}
+
+"""
+aggregate max on columns
+"""
+type posts_max_fields {
+  author_id: Int
+  category_id: Int
+  content: String
+  cover: String
+  created_at: timestamptz
+  description: String
+  guid: String
+  id: Int
+  name: String
+  title: String
+  updated_at: timestamptz
+}
+
+"""
+order by max() on columns of table "posts"
+"""
+input posts_max_order_by {
+  author_id: order_by
+  category_id: order_by
+  content: order_by
+  cover: order_by
+  created_at: order_by
+  description: order_by
+  guid: order_by
+  id: order_by
+  name: order_by
+  title: order_by
+  updated_at: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type posts_min_fields {
+  author_id: Int
+  category_id: Int
+  content: String
+  cover: String
+  created_at: timestamptz
+  description: String
+  guid: String
+  id: Int
+  name: String
+  title: String
+  updated_at: timestamptz
+}
+
+"""
+order by min() on columns of table "posts"
+"""
+input posts_min_order_by {
+  author_id: order_by
+  category_id: order_by
+  content: order_by
+  cover: order_by
+  created_at: order_by
+  description: order_by
+  guid: order_by
+  id: order_by
+  name: order_by
+  title: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "posts"
+"""
+type posts_mutation_response {
+  """
+  number of affected rows by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data of the affected rows by the mutation
+  """
+  returning: [posts!]!
+}
+
+"""
+input type for inserting object relation for remote table "posts"
+"""
+input posts_obj_rel_insert_input {
+  data: posts_insert_input!
+  on_conflict: posts_on_conflict
+}
+
+"""
+on conflict condition type for table "posts"
+"""
+input posts_on_conflict {
+  constraint: posts_constraint!
+  update_columns: [posts_update_column!]!
+  where: posts_bool_exp
+}
+
+"""
+ordering options when selecting data from "posts"
+"""
+input posts_order_by {
+  author_id: order_by
+  category: categories_order_by
+  category_id: order_by
+  content: order_by
+  cover: order_by
+  created_at: order_by
+  description: order_by
+  guid: order_by
+  id: order_by
+  name: order_by
+  postmeta_aggregate: postmeta_aggregate_order_by
+  title: order_by
+  updated_at: order_by
+  user: users_order_by
+}
+
+"""
+primary key columns input for table: "posts"
+"""
+input posts_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "posts"
+"""
+enum posts_select_column {
+  """
+  column name
+  """
+  author_id
+
+  """
+  column name
+  """
+  category_id
+
+  """
+  column name
+  """
+  content
+
+  """
+  column name
+  """
+  cover
+
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  description
+
+  """
+  column name
+  """
+  guid
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  title
+
+  """
+  column name
+  """
+  updated_at
+}
+
+"""
+input type for updating data in table "posts"
+"""
+input posts_set_input {
+  author_id: Int
+  category_id: Int
+  content: String
+  cover: String
+  created_at: timestamptz
+  description: String
+  guid: String
+  id: Int
+  name: String
+  title: String
+  updated_at: timestamptz
+}
+
+"""
+aggregate stddev on columns
+"""
+type posts_stddev_fields {
+  author_id: Float
+  category_id: Float
+  id: Float
+}
+
+"""
+order by stddev() on columns of table "posts"
+"""
+input posts_stddev_order_by {
+  author_id: order_by
+  category_id: order_by
+  id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type posts_stddev_pop_fields {
+  author_id: Float
+  category_id: Float
+  id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "posts"
+"""
+input posts_stddev_pop_order_by {
+  author_id: order_by
+  category_id: order_by
+  id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type posts_stddev_samp_fields {
+  author_id: Float
+  category_id: Float
+  id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "posts"
+"""
+input posts_stddev_samp_order_by {
+  author_id: order_by
+  category_id: order_by
+  id: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type posts_sum_fields {
+  author_id: Int
+  category_id: Int
+  id: Int
+}
+
+"""
+order by sum() on columns of table "posts"
+"""
+input posts_sum_order_by {
+  author_id: order_by
+  category_id: order_by
+  id: order_by
+}
+
+"""
+update columns of table "posts"
+"""
+enum posts_update_column {
+  """
+  column name
+  """
+  author_id
+
+  """
+  column name
+  """
+  category_id
+
+  """
+  column name
+  """
+  content
+
+  """
+  column name
+  """
+  cover
+
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  description
+
+  """
+  column name
+  """
+  guid
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  title
+
+  """
+  column name
+  """
+  updated_at
+}
+
+"""
+aggregate var_pop on columns
+"""
+type posts_var_pop_fields {
+  author_id: Float
+  category_id: Float
+  id: Float
+}
+
+"""
+order by var_pop() on columns of table "posts"
+"""
+input posts_var_pop_order_by {
+  author_id: order_by
+  category_id: order_by
+  id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type posts_var_samp_fields {
+  author_id: Float
+  category_id: Float
+  id: Float
+}
+
+"""
+order by var_samp() on columns of table "posts"
+"""
+input posts_var_samp_order_by {
+  author_id: order_by
+  category_id: order_by
+  id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type posts_variance_fields {
+  author_id: Float
+  category_id: Float
+  id: Float
+}
+
+"""
+order by variance() on columns of table "posts"
+"""
+input posts_variance_order_by {
+  author_id: order_by
+  category_id: order_by
+  id: order_by
+}
+
+"""
+query root
+"""
+type query_root {
+  """
+  fetch data from the table: "assets"
+  """
+  assets(
+    """
+    distinct select on columns
+    """
+    distinct_on: [assets_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [assets_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: assets_bool_exp
+  ): [assets!]!
+
+  """
+  fetch aggregated fields from the table: "assets"
+  """
+  assets_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [assets_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [assets_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: assets_bool_exp
+  ): assets_aggregate!
+
+  """
+  fetch data from the table: "assets" using primary key columns
+  """
+  assets_by_pk(id: Int!): assets
+
+  """
+  fetch data from the table: "categories"
+  """
+  categories(
+    """
+    distinct select on columns
+    """
+    distinct_on: [categories_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [categories_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: categories_bool_exp
+  ): [categories!]!
+
+  """
+  fetch aggregated fields from the table: "categories"
+  """
+  categories_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [categories_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [categories_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: categories_bool_exp
+  ): categories_aggregate!
+
+  """
+  fetch data from the table: "categories" using primary key columns
+  """
+  categories_by_pk(id: Int!): categories
+
+  """
+  fetch data from the table: "postmeta"
+  """
+  postmeta(
+    """
+    distinct select on columns
+    """
+    distinct_on: [postmeta_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [postmeta_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: postmeta_bool_exp
+  ): [postmeta!]!
+
+  """
+  fetch aggregated fields from the table: "postmeta"
+  """
+  postmeta_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [postmeta_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [postmeta_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: postmeta_bool_exp
+  ): postmeta_aggregate!
+
+  """
+  fetch data from the table: "postmeta" using primary key columns
+  """
+  postmeta_by_pk(id: Int!): postmeta
+
+  """
+  fetch data from the table: "posts"
+  """
+  posts(
+    """
+    distinct select on columns
+    """
+    distinct_on: [posts_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [posts_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: posts_bool_exp
+  ): [posts!]!
+
+  """
+  fetch aggregated fields from the table: "posts"
+  """
+  posts_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [posts_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [posts_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: posts_bool_exp
+  ): posts_aggregate!
+
+  """
+  fetch data from the table: "posts" using primary key columns
+  """
+  posts_by_pk(id: Int!): posts
+
+  """
+  fetch data from the table: "session"
+  """
+  session(
+    """
+    distinct select on columns
+    """
+    distinct_on: [session_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [session_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: session_bool_exp
+  ): [session!]!
+
+  """
+  fetch aggregated fields from the table: "session"
+  """
+  session_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [session_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [session_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: session_bool_exp
+  ): session_aggregate!
+
+  """
+  fetch data from the table: "session" using primary key columns
+  """
+  session_by_pk(id: Int!): session
+
+  """
+  fetch data from the table: "users"
+  """
+  users(
+    """
+    distinct select on columns
+    """
+    distinct_on: [users_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [users_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: users_bool_exp
+  ): [users!]!
+
+  """
+  fetch aggregated fields from the table: "users"
+  """
+  users_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [users_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [users_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: users_bool_exp
+  ): users_aggregate!
+
+  """
+  fetch data from the table: "users" using primary key columns
+  """
+  users_by_pk(id: Int!): users
+}
+
+"""
+columns and relationships of "session"
+"""
+type session {
+  created_at: timestamptz!
+  expires: timestamptz!
+  id: Int!
+  invalidated: Boolean!
+  token: String!
+  updated_at: timestamptz!
+
+  """
+  An object relationship
+  """
+  user: users!
+  user_id: Int!
+}
+
+"""
+aggregated selection of "session"
+"""
+type session_aggregate {
+  aggregate: session_aggregate_fields
+  nodes: [session!]!
+}
+
+"""
+aggregate fields of "session"
+"""
+type session_aggregate_fields {
+  avg: session_avg_fields
+  count(columns: [session_select_column!], distinct: Boolean): Int
+  max: session_max_fields
+  min: session_min_fields
+  stddev: session_stddev_fields
+  stddev_pop: session_stddev_pop_fields
+  stddev_samp: session_stddev_samp_fields
+  sum: session_sum_fields
+  var_pop: session_var_pop_fields
+  var_samp: session_var_samp_fields
+  variance: session_variance_fields
+}
+
+"""
+order by aggregate values of table "session"
+"""
+input session_aggregate_order_by {
+  avg: session_avg_order_by
+  count: order_by
+  max: session_max_order_by
+  min: session_min_order_by
+  stddev: session_stddev_order_by
+  stddev_pop: session_stddev_pop_order_by
+  stddev_samp: session_stddev_samp_order_by
+  sum: session_sum_order_by
+  var_pop: session_var_pop_order_by
+  var_samp: session_var_samp_order_by
+  variance: session_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "session"
+"""
+input session_arr_rel_insert_input {
+  data: [session_insert_input!]!
+  on_conflict: session_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type session_avg_fields {
+  id: Float
+  user_id: Float
+}
+
+"""
+order by avg() on columns of table "session"
+"""
+input session_avg_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "session". All fields are combined with a logical 'AND'.
+"""
+input session_bool_exp {
+  _and: [session_bool_exp]
+  _not: session_bool_exp
+  _or: [session_bool_exp]
+  created_at: timestamptz_comparison_exp
+  expires: timestamptz_comparison_exp
+  id: Int_comparison_exp
+  invalidated: Boolean_comparison_exp
+  token: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  user: users_bool_exp
+  user_id: Int_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "session"
+"""
+enum session_constraint {
+  """
+  unique or primary key constraint
+  """
+  session_pkey
+}
+
+"""
+input type for incrementing integer columne in table "session"
+"""
+input session_inc_input {
+  id: Int
+  user_id: Int
+}
+
+"""
+input type for inserting data into table "session"
+"""
+input session_insert_input {
+  created_at: timestamptz
+  expires: timestamptz
+  id: Int
+  invalidated: Boolean
+  token: String
+  updated_at: timestamptz
+  user: users_obj_rel_insert_input
+  user_id: Int
+}
+
+"""
+aggregate max on columns
+"""
+type session_max_fields {
+  created_at: timestamptz
+  expires: timestamptz
+  id: Int
+  token: String
+  updated_at: timestamptz
+  user_id: Int
+}
+
+"""
+order by max() on columns of table "session"
+"""
+input session_max_order_by {
+  created_at: order_by
+  expires: order_by
+  id: order_by
+  token: order_by
+  updated_at: order_by
+  user_id: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type session_min_fields {
+  created_at: timestamptz
+  expires: timestamptz
+  id: Int
+  token: String
+  updated_at: timestamptz
+  user_id: Int
+}
+
+"""
+order by min() on columns of table "session"
+"""
+input session_min_order_by {
+  created_at: order_by
+  expires: order_by
+  id: order_by
+  token: order_by
+  updated_at: order_by
+  user_id: order_by
+}
+
+"""
+response of any mutation on the table "session"
+"""
+type session_mutation_response {
+  """
+  number of affected rows by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data of the affected rows by the mutation
+  """
+  returning: [session!]!
+}
+
+"""
+input type for inserting object relation for remote table "session"
+"""
+input session_obj_rel_insert_input {
+  data: session_insert_input!
+  on_conflict: session_on_conflict
+}
+
+"""
+on conflict condition type for table "session"
+"""
+input session_on_conflict {
+  constraint: session_constraint!
+  update_columns: [session_update_column!]!
+  where: session_bool_exp
+}
+
+"""
+ordering options when selecting data from "session"
+"""
+input session_order_by {
+  created_at: order_by
+  expires: order_by
+  id: order_by
+  invalidated: order_by
+  token: order_by
+  updated_at: order_by
+  user: users_order_by
+  user_id: order_by
+}
+
+"""
+primary key columns input for table: "session"
+"""
+input session_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "session"
+"""
+enum session_select_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  expires
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  invalidated
+
+  """
+  column name
+  """
+  token
+
+  """
+  column name
+  """
+  updated_at
+
+  """
+  column name
+  """
+  user_id
+}
+
+"""
+input type for updating data in table "session"
+"""
+input session_set_input {
+  created_at: timestamptz
+  expires: timestamptz
+  id: Int
+  invalidated: Boolean
+  token: String
+  updated_at: timestamptz
+  user_id: Int
+}
+
+"""
+aggregate stddev on columns
+"""
+type session_stddev_fields {
+  id: Float
+  user_id: Float
+}
+
+"""
+order by stddev() on columns of table "session"
+"""
+input session_stddev_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type session_stddev_pop_fields {
+  id: Float
+  user_id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "session"
+"""
+input session_stddev_pop_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type session_stddev_samp_fields {
+  id: Float
+  user_id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "session"
+"""
+input session_stddev_samp_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type session_sum_fields {
+  id: Int
+  user_id: Int
+}
+
+"""
+order by sum() on columns of table "session"
+"""
+input session_sum_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+"""
+update columns of table "session"
+"""
+enum session_update_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  expires
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  invalidated
+
+  """
+  column name
+  """
+  token
+
+  """
+  column name
+  """
+  updated_at
+
+  """
+  column name
+  """
+  user_id
+}
+
+"""
+aggregate var_pop on columns
+"""
+type session_var_pop_fields {
+  id: Float
+  user_id: Float
+}
+
+"""
+order by var_pop() on columns of table "session"
+"""
+input session_var_pop_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type session_var_samp_fields {
+  id: Float
+  user_id: Float
+}
+
+"""
+order by var_samp() on columns of table "session"
+"""
+input session_var_samp_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type session_variance_fields {
+  id: Float
+  user_id: Float
+}
+
+"""
+order by variance() on columns of table "session"
+"""
+input session_variance_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+"""
+expression to compare columns of type String. All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+  _ilike: String
+  _in: [String!]
+  _is_null: Boolean
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+  _nilike: String
+  _nin: [String!]
+  _nlike: String
+  _nsimilar: String
+  _similar: String
+}
+
+"""
+subscription root
+"""
+type subscription_root {
+  """
+  fetch data from the table: "assets"
+  """
+  assets(
+    """
+    distinct select on columns
+    """
+    distinct_on: [assets_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [assets_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: assets_bool_exp
+  ): [assets!]!
+
+  """
+  fetch aggregated fields from the table: "assets"
+  """
+  assets_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [assets_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [assets_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: assets_bool_exp
+  ): assets_aggregate!
+
+  """
+  fetch data from the table: "assets" using primary key columns
+  """
+  assets_by_pk(id: Int!): assets
+
+  """
+  fetch data from the table: "categories"
+  """
+  categories(
+    """
+    distinct select on columns
+    """
+    distinct_on: [categories_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [categories_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: categories_bool_exp
+  ): [categories!]!
+
+  """
+  fetch aggregated fields from the table: "categories"
+  """
+  categories_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [categories_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [categories_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: categories_bool_exp
+  ): categories_aggregate!
+
+  """
+  fetch data from the table: "categories" using primary key columns
+  """
+  categories_by_pk(id: Int!): categories
+
+  """
+  fetch data from the table: "postmeta"
+  """
+  postmeta(
+    """
+    distinct select on columns
+    """
+    distinct_on: [postmeta_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [postmeta_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: postmeta_bool_exp
+  ): [postmeta!]!
+
+  """
+  fetch aggregated fields from the table: "postmeta"
+  """
+  postmeta_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [postmeta_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [postmeta_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: postmeta_bool_exp
+  ): postmeta_aggregate!
+
+  """
+  fetch data from the table: "postmeta" using primary key columns
+  """
+  postmeta_by_pk(id: Int!): postmeta
+
+  """
+  fetch data from the table: "posts"
+  """
+  posts(
+    """
+    distinct select on columns
+    """
+    distinct_on: [posts_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [posts_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: posts_bool_exp
+  ): [posts!]!
+
+  """
+  fetch aggregated fields from the table: "posts"
+  """
+  posts_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [posts_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [posts_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: posts_bool_exp
+  ): posts_aggregate!
+
+  """
+  fetch data from the table: "posts" using primary key columns
+  """
+  posts_by_pk(id: Int!): posts
+
+  """
+  fetch data from the table: "session"
+  """
+  session(
+    """
+    distinct select on columns
+    """
+    distinct_on: [session_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [session_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: session_bool_exp
+  ): [session!]!
+
+  """
+  fetch aggregated fields from the table: "session"
+  """
+  session_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [session_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [session_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: session_bool_exp
+  ): session_aggregate!
+
+  """
+  fetch data from the table: "session" using primary key columns
+  """
+  session_by_pk(id: Int!): session
+
+  """
+  fetch data from the table: "users"
+  """
+  users(
+    """
+    distinct select on columns
+    """
+    distinct_on: [users_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [users_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: users_bool_exp
+  ): [users!]!
+
+  """
+  fetch aggregated fields from the table: "users"
+  """
+  users_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [users_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [users_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: users_bool_exp
+  ): users_aggregate!
+
+  """
+  fetch data from the table: "users" using primary key columns
+  """
+  users_by_pk(id: Int!): users
+}
+
+scalar timestamptz
+
+"""
+expression to compare columns of type timestamptz. All fields are combined with logical 'AND'.
+"""
+input timestamptz_comparison_exp {
+  _eq: timestamptz
+  _gt: timestamptz
+  _gte: timestamptz
+  _in: [timestamptz!]
+  _is_null: Boolean
+  _lt: timestamptz
+  _lte: timestamptz
+  _neq: timestamptz
+  _nin: [timestamptz!]
+}
+
+"""
+columns and relationships of "users"
+"""
+type users {
+  created_at: timestamptz!
+  display_name: String!
+  email: String!
+  id: Int!
+  identifier: String!
+  identifier_change_token(
+    """
+    JSON select path
+    """
+    path: String
+  ): json!
+  last_login: String!
+  password_hash: String!
+  phone: String!
+
+  """
+  An array relationship
+  """
+  posts(
+    """
+    distinct select on columns
+    """
+    distinct_on: [posts_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [posts_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: posts_bool_exp
+  ): [posts!]!
+
+  """
+  An aggregated array relationship
+  """
+  posts_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [posts_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [posts_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: posts_bool_exp
+  ): posts_aggregate!
+
+  """
+  An array relationship
+  """
+  sessions(
+    """
+    distinct select on columns
+    """
+    distinct_on: [session_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [session_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: session_bool_exp
+  ): [session!]!
+
+  """
+  An aggregated array relationship
+  """
+  sessions_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [session_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [session_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: session_bool_exp
+  ): session_aggregate!
+  updated_at: timestamptz!
+  verification_token(
+    """
+    JSON select path
+    """
+    path: String
+  ): json!
+  verified: Boolean!
+}
+
+"""
+aggregated selection of "users"
+"""
+type users_aggregate {
+  aggregate: users_aggregate_fields
+  nodes: [users!]!
+}
+
+"""
+aggregate fields of "users"
+"""
+type users_aggregate_fields {
+  avg: users_avg_fields
+  count(columns: [users_select_column!], distinct: Boolean): Int
+  max: users_max_fields
+  min: users_min_fields
+  stddev: users_stddev_fields
+  stddev_pop: users_stddev_pop_fields
+  stddev_samp: users_stddev_samp_fields
+  sum: users_sum_fields
+  var_pop: users_var_pop_fields
+  var_samp: users_var_samp_fields
+  variance: users_variance_fields
+}
+
+"""
+order by aggregate values of table "users"
+"""
+input users_aggregate_order_by {
+  avg: users_avg_order_by
+  count: order_by
+  max: users_max_order_by
+  min: users_min_order_by
+  stddev: users_stddev_order_by
+  stddev_pop: users_stddev_pop_order_by
+  stddev_samp: users_stddev_samp_order_by
+  sum: users_sum_order_by
+  var_pop: users_var_pop_order_by
+  var_samp: users_var_samp_order_by
+  variance: users_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "users"
+"""
+input users_arr_rel_insert_input {
+  data: [users_insert_input!]!
+  on_conflict: users_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type users_avg_fields {
+  id: Float
+}
+
+"""
+order by avg() on columns of table "users"
+"""
+input users_avg_order_by {
+  id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'.
+"""
+input users_bool_exp {
+  _and: [users_bool_exp]
+  _not: users_bool_exp
+  _or: [users_bool_exp]
+  created_at: timestamptz_comparison_exp
+  display_name: String_comparison_exp
+  email: String_comparison_exp
+  id: Int_comparison_exp
+  identifier: String_comparison_exp
+  identifier_change_token: json_comparison_exp
+  last_login: String_comparison_exp
+  password_hash: String_comparison_exp
+  phone: String_comparison_exp
+  posts: posts_bool_exp
+  sessions: session_bool_exp
+  updated_at: timestamptz_comparison_exp
+  verification_token: json_comparison_exp
+  verified: Boolean_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "users"
+"""
+enum users_constraint {
+  """
+  unique or primary key constraint
+  """
+  users_identifier_unique
+
+  """
+  unique or primary key constraint
+  """
+  users_pkey
+}
+
+"""
+input type for incrementing integer columne in table "users"
+"""
+input users_inc_input {
+  id: Int
+}
+
+"""
+input type for inserting data into table "users"
+"""
+input users_insert_input {
+  created_at: timestamptz
+  display_name: String
+  email: String
+  id: Int
+  identifier: String
+  identifier_change_token: json
+  last_login: String
+  password_hash: String
+  phone: String
+  posts: posts_arr_rel_insert_input
+  sessions: session_arr_rel_insert_input
+  updated_at: timestamptz
+  verification_token: json
+  verified: Boolean
+}
+
+"""
+aggregate max on columns
+"""
+type users_max_fields {
+  created_at: timestamptz
+  display_name: String
+  email: String
+  id: Int
+  identifier: String
+  last_login: String
+  password_hash: String
+  phone: String
+  updated_at: timestamptz
+}
+
+"""
+order by max() on columns of table "users"
+"""
+input users_max_order_by {
+  created_at: order_by
+  display_name: order_by
+  email: order_by
+  id: order_by
+  identifier: order_by
+  last_login: order_by
+  password_hash: order_by
+  phone: order_by
+  updated_at: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type users_min_fields {
+  created_at: timestamptz
+  display_name: String
+  email: String
+  id: Int
+  identifier: String
+  last_login: String
+  password_hash: String
+  phone: String
+  updated_at: timestamptz
+}
+
+"""
+order by min() on columns of table "users"
+"""
+input users_min_order_by {
+  created_at: order_by
+  display_name: order_by
+  email: order_by
+  id: order_by
+  identifier: order_by
+  last_login: order_by
+  password_hash: order_by
+  phone: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "users"
+"""
+type users_mutation_response {
+  """
+  number of affected rows by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data of the affected rows by the mutation
+  """
+  returning: [users!]!
+}
+
+"""
+input type for inserting object relation for remote table "users"
+"""
+input users_obj_rel_insert_input {
+  data: users_insert_input!
+  on_conflict: users_on_conflict
+}
+
+"""
+on conflict condition type for table "users"
+"""
+input users_on_conflict {
+  constraint: users_constraint!
+  update_columns: [users_update_column!]!
+  where: users_bool_exp
+}
+
+"""
+ordering options when selecting data from "users"
+"""
+input users_order_by {
+  created_at: order_by
+  display_name: order_by
+  email: order_by
+  id: order_by
+  identifier: order_by
+  identifier_change_token: order_by
+  last_login: order_by
+  password_hash: order_by
+  phone: order_by
+  posts_aggregate: posts_aggregate_order_by
+  sessions_aggregate: session_aggregate_order_by
+  updated_at: order_by
+  verification_token: order_by
+  verified: order_by
+}
+
+"""
+primary key columns input for table: "users"
+"""
+input users_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "users"
+"""
+enum users_select_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  display_name
+
+  """
+  column name
+  """
+  email
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  identifier
+
+  """
+  column name
+  """
+  identifier_change_token
+
+  """
+  column name
+  """
+  last_login
+
+  """
+  column name
+  """
+  password_hash
+
+  """
+  column name
+  """
+  phone
+
+  """
+  column name
+  """
+  updated_at
+
+  """
+  column name
+  """
+  verification_token
+
+  """
+  column name
+  """
+  verified
+}
+
+"""
+input type for updating data in table "users"
+"""
+input users_set_input {
+  created_at: timestamptz
+  display_name: String
+  email: String
+  id: Int
+  identifier: String
+  identifier_change_token: json
+  last_login: String
+  password_hash: String
+  phone: String
+  updated_at: timestamptz
+  verification_token: json
+  verified: Boolean
+}
+
+"""
+aggregate stddev on columns
+"""
+type users_stddev_fields {
+  id: Float
+}
+
+"""
+order by stddev() on columns of table "users"
+"""
+input users_stddev_order_by {
+  id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type users_stddev_pop_fields {
+  id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "users"
+"""
+input users_stddev_pop_order_by {
+  id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type users_stddev_samp_fields {
+  id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "users"
+"""
+input users_stddev_samp_order_by {
+  id: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type users_sum_fields {
+  id: Int
+}
+
+"""
+order by sum() on columns of table "users"
+"""
+input users_sum_order_by {
+  id: order_by
+}
+
+"""
+update columns of table "users"
+"""
+enum users_update_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  display_name
+
+  """
+  column name
+  """
+  email
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  identifier
+
+  """
+  column name
+  """
+  identifier_change_token
+
+  """
+  column name
+  """
+  last_login
+
+  """
+  column name
+  """
+  password_hash
+
+  """
+  column name
+  """
+  phone
+
+  """
+  column name
+  """
+  updated_at
+
+  """
+  column name
+  """
+  verification_token
+
+  """
+  column name
+  """
+  verified
+}
+
+"""
+aggregate var_pop on columns
+"""
+type users_var_pop_fields {
+  id: Float
+}
+
+"""
+order by var_pop() on columns of table "users"
+"""
+input users_var_pop_order_by {
+  id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type users_var_samp_fields {
+  id: Float
+}
+
+"""
+order by var_samp() on columns of table "users"
+"""
+input users_var_samp_order_by {
+  id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type users_variance_fields {
+  id: Float
+}
+
+"""
+order by variance() on columns of table "users"
+"""
+input users_variance_order_by {
+  id: order_by
+}

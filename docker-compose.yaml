@@ -1,0 +1,70 @@
+version: '3.6'
+services:
+  postgres:
+    image: postgres:12
+    restart: always
+    ports:
+      - "5432:5432"
+    networks:
+      - traefik
+    volumes:
+    - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+  graphql-engine:
+    image: hasura/graphql-engine:v1.2.0-beta.2
+#    ports:
+#    - "8080:8080"
+    expose:
+      - 8080
+    networks:
+      - traefik
+    depends_on:
+    - "postgres"
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      ## uncomment next line to set an admin secret
+      # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      - "traefik.http.routers.graphql0.middlewares=https-redirect@file"
+      - "traefik.http.routers.graphql0.entrypoints=http"
+      - "traefik.http.routers.graphql0.rule=Host(`graphql.picker.cc`)"
+      - "traefik.http.routers.graphql1.middlewares=https-redirect@file"
+      - "traefik.http.routers.graphql1.entrypoints=https"
+      - "traefik.http.routers.graphql1.tls=true"
+      - "traefik.http.routers.graphql1.rule=Host(`graphql.picker.cc`)"
+      - "traefik.http.services.graphqlbackend.loadbalancer.server.scheme=http"
+      - "traefik.http.services.graphqlbackend.loadbalancer.server.port=8080"
+  picker-design:
+    image: flashspys/nginx-static
+    restart: always
+    expose:
+      - 80
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      - "traefik.http.routers.pickerDesign0.middlewares=https-redirect@file"
+      - "traefik.http.routers.pickerDesign0.entrypoints=http"
+      - "traefik.http.routers.pickerDesign0.rule=Host(`design.picker.cc`)"
+      - "traefik.http.routers.pickerDesign1.middlewares=https-redirect@file"
+      - "traefik.http.routers.pickerDesign1.entrypoints=https"
+      - "traefik.http.routers.pickerDesign1.tls=true"
+      - "traefik.http.routers.pickerDesign1.rule=Host(`design.picker.cc`)"
+      - "traefik.http.services.pickerDesignbackend.loadbalancer.server.scheme=http"
+      - "traefik.http.services.pickerDesignbackend.loadbalancer.server.port=80"
+    volumes:
+#      - ./mime.types:/etc/nginx/mime.types
+      - ./dist/spa:/static
+volumes:
+  db_data:
+
+networks:
+  traefik:
+    external: true
