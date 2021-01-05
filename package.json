@@ -15,7 +15,7 @@
     "@quasar/extras": "^1.0.0",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-link-http": "^1.5.16",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
     "node-fetch": "^2.6.0",
